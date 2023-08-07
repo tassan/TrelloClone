@@ -12,4 +12,11 @@ public class Card
         Description = string.Empty;
         Deadline = null;
     }
+    
+    public void Update(string name, string description, DateTime? deadline)
+    {
+        Name = name;
+        Description = description;
+        Deadline = deadline;
+    }
 }
