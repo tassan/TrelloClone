@@ -115,4 +115,75 @@ public class BoardTest
         Assert.That(_board.Columns[0].Name, Is.EqualTo("Doing"));
         Assert.That(_board.Columns[1].Name, Is.EqualTo("To Do"));
     }
+    
+    [Test]
+    public void Board_Should_AddUntrackedCard()
+    {
+        // Arrange
+        var board = new Board();
+        var column = new Column("To Do");
+        var card = new Card("Write Tests");
+        
+        board.AddColumn(column);
+        board.AddCard(card);
+        
+        // Act
+        board.RemoveCard(card);
+        
+        // Assert
+        Assert.That(board.CountUntrackedCards(), Is.EqualTo(1));
+    }
+    
+    [Test]
+    public void Board_Should_RemoveUntrackedCard()
+    {
+        // Arrange
+        var board = new Board();
+        var column = new Column("To Do");
+        var card = new Card("Write Tests");
+        
+        board.AddColumn(column);
+        board.AddCard(card);
+        board.RemoveCard(card);
+        
+        // Act
+        board.AddCard(card);
+        
+        // Assert
+        Assert.That(board.CountUntrackedCards(), Is.EqualTo(0));
+    }
+    
+    [Test]
+    public void Board_Should_DoNothing_When_EmptyColumns()
+    {
+        // Arrange
+        var board = new Board();
+        var card = new Card("Write Tests");
+        
+        // Act
+        board.AddCard(card);
+        board.RemoveCard(card);
+        
+        // Assert
+        Assert.That(board.CountCards(), Is.EqualTo(0));
+    }
+
+    [Test]
+    public void Board_ToString_Test()
+    {
+        // Arrange
+        var board = new Board("Teams Special Project");
+        var column = new Column("To Do");
+        var card = new Card("Write Tests");
+        
+        board.AddColumn(column);
+        board.AddCard(card);
+        
+        // Act
+        var result = board.ToString();
+        
+        // Assert
+        result.Should()
+            .NotBeEmpty();
+    }
 }
