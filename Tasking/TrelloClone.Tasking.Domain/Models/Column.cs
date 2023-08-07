@@ -1,6 +1,6 @@
 ﻿namespace TrelloClone.Tasking.Domain.Models;
 
-public class Column
+public class Column : List<Card>
 {
     public string Name { get; set; }
     public List<Card> Cards { get; set; }
@@ -14,15 +14,5 @@ public class Column
     public Column(string columnName = "New Column") : this()
     {
         Name = columnName;
-    }
-
-    public void Add(Card card)
-    {
-        Cards.Add(card);
-    }
-
-    public void Remove(Card card)
-    {
-        Cards.Remove(card);
     }
 }

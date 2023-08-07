@@ -93,8 +93,8 @@ public class BoardTest
         
         // Assert
         Assert.That(_board.CountCards(), Is.EqualTo(1));
-        Assert.That(todoColumn.CountCards(), Is.EqualTo(0));
-        Assert.That(doingColumn.CountCards(), Is.EqualTo(1));
+        Assert.That(todoColumn.Count, Is.EqualTo(0));
+        Assert.That(doingColumn.Count, Is.EqualTo(1));
     }
 
     [Test]
